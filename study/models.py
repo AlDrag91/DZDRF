@@ -4,12 +4,12 @@ from users.models import NULLABLE
 
 
 class Course(models.Model):
-    course_title = models.CharField(max_length=100, verbose_name='Название курса')
+    title = models.CharField(max_length=100, verbose_name='Название курса')
     preview = models.ImageField(upload_to='course/course', verbose_name='Превью', **NULLABLE)
     description = models.TextField(verbose_name='Описание')
 
     def __str__(self):
-        return f'{self.course_title}'
+        return f'{self.title}'
 
     class Meta:
         verbose_name = 'Курс'
@@ -17,14 +17,14 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
-    course_title = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Название курса')
-    lesson_title = models.CharField(max_length=100, verbose_name='Название урока')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Название курса')
+    title = models.CharField(max_length=100, verbose_name='Название урока')
     description = models.TextField(verbose_name='Описание')
     preview = models.ImageField(upload_to='course/lesson', verbose_name='Превью', **NULLABLE)
-    link_to_the_video = models.GenericIPAddressField(verbose_name='ссылка на видео', **NULLABLE)
+    link_to_the_video = models.URLField(verbose_name='ссылка на видео', **NULLABLE)
 
     def __str__(self):
-        return f'{self.lesson_title}'
+        return f'{self.title}'
 
     class Meta:
         verbose_name = 'Урок'
