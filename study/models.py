@@ -1,6 +1,6 @@
 from django.db import models
 
-from users.models import NULLABLE
+from users.constants import NULLABLE
 
 
 class Course(models.Model):
