@@ -1,7 +1,8 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
-from study.models import Course, Lesson
+
 from users.constants import NULLABLE
+
+from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
@@ -16,7 +17,8 @@ class User(AbstractUser):
 
 
 class Payments(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    from study.models import Course, Lesson
+    user = models.ForeignKey(User, on_delete=models.CASCADE, **NULLABLE)
     payment_date = models.DateField(auto_now=True)
     course_paid = models.ForeignKey(Course, on_delete=models.CASCADE, **NULLABLE)
     lesson_paid = models.ForeignKey(Lesson, on_delete=models.CASCADE, **NULLABLE)

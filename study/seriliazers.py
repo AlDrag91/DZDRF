@@ -19,7 +19,6 @@ class CourseDataSerializer(serializers.ModelSerializer):
     count_lesson = serializers.SerializerMethodField()
     lessons = LessonSerializer(source='lesson_set', many=True, read_only=True)
 
-
     def get_count_lesson(self, course):
         """Кол-во уроков в курсе"""
         return course.lesson_set.count()
