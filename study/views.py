@@ -14,6 +14,7 @@ from users.permissions import IsModerator, IsOwner
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     pagination_class = CustomPagination
+
     def get_serializer_class(self):
         if self.action == "retrieve":
             return CourseDataSerializer
@@ -34,6 +35,7 @@ class CourseViewSet(viewsets.ModelViewSet):
         course.save()
 
     """Управление подписками"""
+
     def post(self, request, *args, **kwargs):
         user = request.user
         course_id = request.data.get('course_id')
