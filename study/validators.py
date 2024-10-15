@@ -1,12 +1,6 @@
 import re
 from rest_framework.serializers import ValidationError
-from urllib.parse import urlparse
 
-
-# def validate_link(value):
-#     parsed_url = urlparse(value)
-#     if parsed_url.netloc and 'youtube.com' not in parsed_url.netloc:
-#         raise ValidationError('Ссылки на сторонние ресурсы, кроме youtube.com, запрещены.')
 
 class TitleValidator:
     def __init__(self, field):
